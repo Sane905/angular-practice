@@ -1,31 +1,27 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { AppComponent } from "./app.component";
+import { TopBarComponent } from "./modules/shared/header/top-bar.component";
+import { PlayerListComponent } from "./modules/components/player/list/player-list.component";
+import { HttpClientModule } from "@angular/common/http";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { AppRoutingModule } from "./app.routes.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-    ])
+    HttpClientModule,
+    AppRoutingModule,
   ],
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    ProductListComponent
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+  declarations: [AppComponent, TopBarComponent, PlayerListComponent],
+  bootstrap: [AppComponent],
+  providers: [provideAnimationsAsync()],
 })
-export class AppModule { }
-
+export class AppModule {}
 
 /*
 Copyright Google LLC. All Rights Reserved.
