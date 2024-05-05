@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -9,6 +9,8 @@ import { PlayerListComponent } from "./modules/components/player/list/player-lis
 import { HttpClientModule } from "@angular/common/http";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { AppRoutingModule } from "./app.routes.module";
+import { TeamDetailComponent } from "./modules/components/team/detail/team-detail.component";
+import { BelongingPlayerListComponent } from "./modules/components/team/detail/belonging-player-list/belonging-player-list.component";
 
 @NgModule({
   imports: [
@@ -16,8 +18,10 @@ import { AppRoutingModule } from "./app.routes.module";
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BelongingPlayerListComponent,
   ],
   declarations: [AppComponent, TopBarComponent, PlayerListComponent],
+  exports: [BelongingPlayerListComponent, PlayerListComponent],
   bootstrap: [AppComponent],
   providers: [provideAnimationsAsync()],
 })

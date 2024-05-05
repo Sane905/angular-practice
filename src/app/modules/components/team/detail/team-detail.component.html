@@ -1,0 +1,35 @@
+<div class="teamInfo">
+  <img class="teamLogo" src="{{ (this.team$ | async)?.logoUrl }}" alt="" />
+  <p>{{ (this.team$ | async)?.name }}</p>
+</div>
+<div class="tab">
+  <div
+    class="tabItem"
+    [class.selected]="selectedTab === 'matches'"
+    (click)="selectTab('matches')"
+  >
+    試合一覧
+  </div>
+  <div
+    class="tabItem"
+    [class.selected]="selectedTab === 'players'"
+    (click)="selectTab('players')"
+  >
+    選手一覧
+  </div>
+  <div
+    class="tabItem"
+    [class.selected]="selectedTab === 'teamInfo'"
+    (click)="selectTab('teamInfo')"
+  >
+    チーム情報
+  </div>
+</div>
+<!-- 選手一覧を表示するhtmlを記述してください。 -->
+<!-- 選手名、生年月日、写真を表示してください。 -->
+<!-- 選手名をクリックすると、その選手の詳細画面に遷移するようにしてください。 -->
+<!-- 選手がいない場合は、"選手情報がありません"と表示してください。 -->
+<!-- 選手一覧の表示は、選手一覧タブが選択された場合にのみ表示されるようにしてください。 -->
+<app-belonging-player-list
+  *ngIf="selectedTab === 'players'"
+></app-belonging-player-list>

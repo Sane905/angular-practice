@@ -1,0 +1,13 @@
+<div class="playerList">
+  <div class="card" *ngFor="let player of this.players$ | async">
+    <h2>
+      <a>
+        {{ player.name }}
+      </a>
+    </h2>
+    <p>{{ player.age }}才</p>
+    <p>{{ player.country.name }}</p>
+    <img src="{{ player.photoUrl }}" style="width: 100px; height: 100px" />
+  </div>
+  <p *ngIf="!(this.players$ | async)?.length">選手情報がありません</p>
+</div>

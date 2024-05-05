@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { PlayerService } from "../../../services/player.service";
 import { Player } from "../../../model/player";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 
 @Component({
   selector: "app-player-list",
@@ -9,8 +9,16 @@ import { Observable } from "rxjs";
   styleUrl: "./player-list.component.css",
 })
 export class PlayerListComponent {
-  constructor(private playerService: PlayerService) {}
-  public players$ = this.playerService.getPlayers();
+  public players$: Observable<Player[]>;
+
+  constructor(private playerService: PlayerService) {
+    this.players$ = this.playerService.getPlayers().pipe(
+      map((players) => {
+        console.log(players);
+        return players;
+      })
+    );
+  }
 
   ngOnInit(): void {}
 }
