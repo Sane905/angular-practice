@@ -11,6 +11,8 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { AppRoutingModule } from "./app.routes.module";
 import { TeamDetailComponent } from "./modules/components/team/detail/team-detail.component";
 import { BelongingPlayerListComponent } from "./modules/components/team/detail/belonging-player-list/belonging-player-list.component";
+import { MatchInfoComponent } from "./modules/components/team/detail/match-info/match-info.component";
+import { TeamInfoComponent } from "./modules/components/team/detail/team-info/team-info.component";
 
 @NgModule({
   imports: [
@@ -19,9 +21,11 @@ import { BelongingPlayerListComponent } from "./modules/components/team/detail/b
     HttpClientModule,
     AppRoutingModule,
     BelongingPlayerListComponent,
+    MatchInfoComponent,
+    TeamInfoComponent,
   ],
   declarations: [AppComponent, TopBarComponent, PlayerListComponent],
-  exports: [BelongingPlayerListComponent, PlayerListComponent],
+  exports: [PlayerListComponent],
   bootstrap: [AppComponent],
   providers: [provideAnimationsAsync()],
 })

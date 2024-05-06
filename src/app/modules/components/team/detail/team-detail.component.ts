@@ -5,11 +5,18 @@ import { TeamService } from "../../../services/team.service";
 import { Observable } from "rxjs";
 import { Team } from "../../../model/team";
 import { BelongingPlayerListComponent } from "./belonging-player-list/belonging-player-list.component";
+import { MatchInfoComponent } from "./match-info/match-info.component";
+import { TeamInfoComponent } from "./team-info/team-info.component";
 
 @Component({
   selector: "app-team-detail",
   standalone: true,
-  imports: [CommonModule, BelongingPlayerListComponent],
+  imports: [
+    CommonModule,
+    BelongingPlayerListComponent,
+    MatchInfoComponent,
+    TeamInfoComponent,
+  ],
   templateUrl: "./team-detail.component.html",
   styleUrl: "./team-detail.component.css",
 })

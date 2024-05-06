@@ -1,7 +1,4 @@
 <div class="root">
-  <div class="leagueName">
-    <p *ngIf="this.league$ | async">{{ (this.league$ | async)?.name }}</p>
-  </div>
   <div class="rankingInfo">
     <table class="table">
       <thead>
@@ -16,9 +13,12 @@
         </tr>
       </thead>
       <tbody>
-        <!-- teamRankingInfos$ | asyncを使って、複数のチームの勝ち点、試合数、勝ち数、引き分け数、負け数を表示してください。
-        チーム名はリンクにして、クリックするとそのチームの試合一覧に遷移するようにしてください。 -->
-        <tr *ngFor="let teamRankingInfo of this.teamRankingInfos$ | async">
+        <tr
+          *ngFor="let teamRankingInfo of this.filterTeamRankingInfos$ | async"
+          [ngClass]="{
+            highlight: teamRankingInfo.team.uid === teamUid
+          }"
+        >
           <td>{{ teamRankingInfo.currentRank }}</td>
           <td class="teamName">
             <img

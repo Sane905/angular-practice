@@ -8,7 +8,6 @@ import { League, LeagueFromResponse, LeagueResponse } from "../model/league";
 })
 export class LeagueService {
   private apiUrl = "http://localhost:3000/leagues"; // API URLを指定します
-
   constructor(private http: HttpClient) {}
 
   getLeagues(): Observable<League[]> {

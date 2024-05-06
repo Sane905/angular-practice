@@ -14,7 +14,6 @@ export class PlayerListComponent {
   constructor(private playerService: PlayerService) {
     this.players$ = this.playerService.getPlayers().pipe(
       map((players) => {
-        console.log(players);
         return players;
       })
     );

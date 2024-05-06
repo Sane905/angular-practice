@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { PlayerService } from "../../../../services/player.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { Observable, map } from "rxjs";
 import { Player } from "../../../../model/player";
 
 @Component({
   selector: "app-belonging-player-list",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: "./belonging-player-list.component.html",
   styleUrl: "./belonging-player-list.component.css",
 })

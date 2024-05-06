@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { BehaviorSubject, Observable, map, tap } from "rxjs";
 import {
   TeamRankingInfo,
   TeamRankingInfoFromResponse,
@@ -13,8 +13,12 @@ import { LeagueFromResponse } from "../model/league";
 })
 export class TeamRankingInfoService {
   private apiUrl = "http://localhost:3000/team_ranking_infos.json"; // API URLを指定します
+  private _teamRankingInfos$: BehaviorSubject<TeamRankingInfo[]> =
+    new BehaviorSubject<TeamRankingInfo[]>([]);
 
   constructor(private http: HttpClient) {}
+
+  teamRankingInfos$ = this._teamRankingInfos$.asObservable();
 
   getTeamRankingInfosByLeague(
     params: TeamRankingInfoParams
@@ -26,7 +30,12 @@ export class TeamRankingInfoService {
           season_year: params.seasonYear.toString(),
         },
       })
-      .pipe(map((response) => response.map(TeamRankingInfoFromResponse)));
+      .pipe(
+        map((response) => response.map(TeamRankingInfoFromResponse)),
+        tap((teamRankingInfos) =>
+          this._teamRankingInfos$.next(teamRankingInfos)
+        )
+      );
   }
 }
 
