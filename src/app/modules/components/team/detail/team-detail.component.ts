@@ -26,6 +26,7 @@ export class TeamDetailComponent implements OnInit {
 
   constructor(private teamService: TeamService, private route: ActivatedRoute) {
     const teamUid = this.route.snapshot.params["uid"] as string;
+    console.log(teamUid);
     this.team$ = this.teamService.getTeam(teamUid);
   }
 

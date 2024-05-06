@@ -17,9 +17,8 @@ export class TeamService {
   constructor(private http: HttpClient) {}
 
   getTeam(uid: string): Observable<Team> {
-    return this.http.get<TeamResponse>(`${this.apiUrl}/${uid}`).pipe(
-      map(TeamFromResponse),
-      tap((team) => this._team$.next(team))
-    );
+    return this.http
+      .get<TeamResponse>(`${this.apiUrl}/${uid}.json`)
+      .pipe(map(TeamFromResponse));
   }
 }

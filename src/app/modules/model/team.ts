@@ -1,8 +1,11 @@
+import { League, LeagueFromResponse, LeagueResponse } from "./league";
+
 export interface Team {
   uid: string;
   logoUrl: string;
   name: string;
   shortName: string;
+  league: League;
 }
 
 export interface TeamResponse {
@@ -10,6 +13,7 @@ export interface TeamResponse {
   logo_url: string;
   name: string;
   short_name: string;
+  league: LeagueResponse;
 }
 
 export const TeamFromResponse = (resp: TeamResponse): Team => {
@@ -18,5 +22,6 @@ export const TeamFromResponse = (resp: TeamResponse): Team => {
     logoUrl: resp.logo_url,
     name: resp.name,
     shortName: resp.short_name,
+    league: LeagueFromResponse(resp.league),
   };
 };
