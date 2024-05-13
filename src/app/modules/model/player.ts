@@ -5,6 +5,7 @@ export interface Player {
   name: string;
   age: number;
   photoUrl: string;
+  position: string;
   country: Country;
 }
 
@@ -13,6 +14,7 @@ export interface PlayerResponse {
   name: string;
   age: number;
   photo_url: string;
+  position: string;
   country: CountryResponse;
 }
 
@@ -22,6 +24,7 @@ export const PlayerFromResponse = (resp: PlayerResponse): Player => {
     name: resp.name,
     age: resp.age,
     photoUrl: resp.photo_url,
+    position: resp.position,
     country: CountryFromResponse(resp.country),
   };
 };

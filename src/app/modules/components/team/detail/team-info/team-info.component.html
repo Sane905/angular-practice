@@ -1,1 +1,42 @@
-<p>team-info works!</p>
+<div class="root">
+  <div class="rankingInfo">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>チーム名</th>
+          <th>勝ち点</th>
+          <th>試合数</th>
+          <th>勝ち数</th>
+          <th>引き分け数</th>
+          <th>負け数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let teamRankingInfo of this.filterTeamRankingInfos$ | async"
+          [ngClass]="{
+            highlight: teamRankingInfo.team.uid === teamUid
+          }"
+        >
+          <td>{{ teamRankingInfo.currentRank }}</td>
+          <td class="teamName">
+            <img
+              class="teamLogo"
+              src="{{ teamRankingInfo.team.logoUrl }}"
+              alt=""
+            />
+            <a [routerLink]="['/teams', teamRankingInfo.team.uid]">{{
+              teamRankingInfo.team.shortName
+            }}</a>
+          </td>
+          <td>{{ teamRankingInfo.totalPoint }}</td>
+          <td>{{ teamRankingInfo.matchCount }}</td>
+          <td>{{ teamRankingInfo.winCount }}</td>
+          <td>{{ teamRankingInfo.equalCount }}</td>
+          <td>{{ teamRankingInfo.loseCount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

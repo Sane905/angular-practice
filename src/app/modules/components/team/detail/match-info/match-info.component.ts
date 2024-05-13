@@ -6,6 +6,8 @@ import { Observable, filter, map, switchMap, tap } from "rxjs";
 import { TeamRankingInfo } from "../../../../model/team_ranking_info";
 import { Team } from "../../../../model/team";
 import { TeamService } from "../../../../services/team.service";
+import { Match } from "../../../../model/match";
+import { MatchService } from "../../../../services/match.service";
 
 @Component({
   selector: "app-match-info",
@@ -15,12 +17,14 @@ import { TeamService } from "../../../../services/team.service";
   styleUrl: "./match-info.component.css",
 })
 export class MatchInfoComponent {
+  public matches$: Observable<Match[]>;
   public team$: Observable<Team>;
   public teamRankingInfos$: Observable<TeamRankingInfo[]>;
   public filterTeamRankingInfos$: Observable<TeamRankingInfo[]>;
   constructor(
     private teamRankingInfo: TeamRankingInfoService,
     private teamService: TeamService,
+    private matchService: MatchService,
     private route: ActivatedRoute
   ) {
     this.team$ = this.teamService.getTeam(this.teamUid);
@@ -33,6 +37,8 @@ export class MatchInfoComponent {
         })
       )
     );
+
+    this.matches$ = this.matchService.getMatchesByTeam(this.teamUid);
 
     this.filterTeamRankingInfos$ = this.teamRankingInfos$.pipe(
       map((teamRankingInfos) => {
